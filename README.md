@@ -1,5 +1,3 @@
-# ericdurn.github.io
-Unofficial SOCE Practice Exam
 <!DOCTYPE html>
 <html lang="en">
 <head>
