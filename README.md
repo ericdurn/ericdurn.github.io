@@ -20,9 +20,33 @@
     --red:#A3342E;
     --red-bg:#F8E6E4;
     --radius:6px;
+    --card-bg:#FFFFFF;
+    --btn-bg:#FFFFFF;
+    --timer-bg:#FFFFFF;
+    --shadow-tint:rgba(15,42,63,0.35);
+  }
+
+  [data-theme="dark"]{
+    --navy:#13202C;
+    --navy-dark:#0A1219;
+    --steel:#3A5A72;
+    --gold:#D8A646;
+    --gold-light:#3A3120;
+    --paper:#15191D;
+    --paper-line:#2C333A;
+    --ink:#E7E9EA;
+    --ink-soft:#A0A8AE;
+    --green:#5BBE74;
+    --green-bg:#15301E;
+    --red:#E8746B;
+    --red-bg:#3A1A18;
+    --card-bg:#1D2329;
+    --btn-bg:#1D2329;
+    --timer-bg:#1D2329;
+    --shadow-tint:rgba(0,0,0,0.55);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--paper);color:var(--ink);font-family:'Georgia','Times New Roman',serif;line-height:1.6}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Georgia','Times New Roman',serif;line-height:1.6;transition:background .2s,color .2s}
   body{padding-bottom:4rem}
 
   /* ===== HEADER / BADGE STRIP ===== */
@@ -85,14 +109,14 @@
 
   /* ===== SCOREBOARD ===== */
   .scoreboard{
-    background:#fff;
+    background:var(--card-bg);
     border:1px solid var(--paper-line);
     border-radius:var(--radius);
     margin-top:-1.5rem;
     position:relative;
     z-index:2;
     padding:1rem 1.25rem;
-    box-shadow:0 6px 18px -10px rgba(15,42,63,0.35);
+    box-shadow:0 6px 18px -10px var(--shadow-tint);
     font-family:'Helvetica Neue',Arial,sans-serif;
   }
   .progress-track{
@@ -121,7 +145,7 @@
     padding:5px 12px;
     border-radius:20px;
     border:1px solid var(--paper-line);
-    background:#fff;
+    background:var(--card-bg);
     color:var(--ink-soft);
     cursor:pointer;
     transition:all 0.15s;
@@ -145,7 +169,7 @@
     padding:9px 18px;
     border-radius:var(--radius);
     border:1px solid var(--navy);
-    background:#fff;
+    background:var(--btn-bg);
     color:var(--navy);
     cursor:pointer;
     transition:all 0.15s;
@@ -155,11 +179,11 @@
   .btn.primary{background:var(--navy);color:#fff}
   .btn.primary:hover{background:var(--navy-dark)}
   .btn:disabled{opacity:0.35;cursor:not-allowed}
-  .btn:disabled:hover{background:#fff;color:var(--navy)}
+  .btn:disabled:hover{background:var(--btn-bg);color:var(--navy)}
 
   /* ===== QUESTION CARD ===== */
   .q-card{
-    background:#fff;
+    background:var(--card-bg);
     border:1px solid var(--paper-line);
     border-radius:var(--radius);
     padding:1.25rem 1.35rem;
@@ -203,7 +227,7 @@
     transition:background 0.12s,border-color 0.12s;
     background:var(--paper);
   }
-  .choice:hover{border-color:var(--steel);background:#fff}
+  .choice:hover{border-color:var(--steel);background:var(--card-bg)}
   .choice .letter{
     font-family:'Helvetica Neue',Arial,sans-serif;
     font-weight:700;font-size:12px;
@@ -214,9 +238,9 @@
     color:var(--ink-soft);
     flex-shrink:0;
     margin-top:1px;
-    background:#fff;
+    background:var(--card-bg);
   }
-  .choice.selected{border-color:var(--navy);background:#fff}
+  .choice.selected{border-color:var(--navy);background:var(--card-bg)}
   .choice.selected .letter{border-color:var(--navy);color:var(--navy);background:var(--gold-light)}
   .choice.correct{border-color:var(--green);background:var(--green-bg)}
   .choice.correct .letter{border-color:var(--green);color:#fff;background:var(--green)}
@@ -238,7 +262,7 @@
 
   /* ===== RESULTS ===== */
   .results{
-    background:#fff;border:1px solid var(--paper-line);border-radius:var(--radius);
+    background:var(--card-bg);border:1px solid var(--paper-line);border-radius:var(--radius);
     padding:2rem 1.5rem;text-align:center;margin-bottom:1.5rem;
   }
   .results-pct{font-size:56px;font-weight:700;color:var(--navy);font-family:Georgia,serif}
@@ -279,7 +303,7 @@
   /* ===== TIMER ===== */
   .timer-bar{
     display:flex;align-items:center;gap:12px;
-    background:#fff;
+    background:var(--timer-bg);
     border:2px solid var(--navy);
     border-radius:var(--radius);
     padding:10px 18px;
@@ -318,9 +342,50 @@
   .timer-btn.pause:hover  { background:#fff5ec; }
   .timer-btn.resume { background:#1a7a3c;color:#fff;border-color:#1a7a3c; }
   .timer-btn.resume:hover { background:#145f2f; }
-  .timer-btn.reset-t{ background:#fff;color:#666;border-color:#aaa;font-weight:600; }
+  .timer-btn.reset-t{ background:var(--btn-bg);color:var(--ink-soft);border-color:var(--steel);font-weight:600; }
   .timer-btn.reset-t:hover { background:#f5f5f5; }
-  .timer-sep{ width:1px;height:32px;background:#dde;margin:0 4px; }
+  .timer-sep{ width:1px;height:32px;background:var(--paper-line);margin:0 4px; }
+  /* ===== DARK MODE TOGGLE ===== */
+  .theme-toggle-wrap{
+    display:flex;align-items:center;gap:8px;
+    margin-left:auto;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+  }
+  .theme-toggle-label{
+    font-size:11px;font-weight:700;letter-spacing:.04em;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    user-select:none;
+  }
+  .theme-switch{
+    position:relative;
+    width:46px;height:25px;
+    border-radius:14px;
+    border:1.5px solid var(--steel);
+    background:var(--paper-line);
+    cursor:pointer;
+    transition:background .2s,border-color .2s;
+    flex:none;
+  }
+  .theme-switch .knob{
+    position:absolute;
+    top:2px;left:2px;
+    width:19px;height:19px;
+    border-radius:50%;
+    background:var(--navy);
+    transition:transform .2s,background .2s;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;
+  }
+  [data-theme="dark"] .theme-switch{
+    background:var(--steel);
+    border-color:var(--gold);
+  }
+  [data-theme="dark"] .theme-switch .knob{
+    transform:translateX(21px);
+    background:var(--gold);
+  }
+
 
   /* ===== UNOFFICIAL TAG & DISCLAIMER ===== */
   .unofficial-tag{
@@ -400,6 +465,12 @@
     <div class="timer-sep"></div>
     <button class="timer-btn start" id="timerBtn" onclick="timerToggle()">&#9654; Start</button>
     <button class="timer-btn reset-t" onclick="timerReset()" title="Reset timer to 0">&#8635; Reset</button>
+    <div class="theme-toggle-wrap">
+      <span class="theme-toggle-label" id="themeLabel">Light</span>
+      <div class="theme-switch" id="themeSwitch" onclick="toggleTheme()" role="button" aria-label="Toggle dark mode">
+        <div class="knob"></div>
+      </div>
+    </div>
   </div>
 
   <div class="action-row">
@@ -622,6 +693,29 @@ function timerReset(){
   btn.className = 'timer-btn start';
   btn.textContent = '\u25B6 Start';
 }
+
+
+/* ===== DARK MODE TOGGLE ===== */
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  const label = document.getElementById('themeLabel');
+  if(label) label.textContent = theme === 'dark' ? 'Dark' : 'Light';
+  try{ window.localStorage.setItem('soce-theme', theme); }catch(e){}
+}
+
+function toggleTheme(){
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+(function initTheme(){
+  let saved = null;
+  try{ saved = window.localStorage.getItem('soce-theme'); }catch(e){}
+  if(!saved){
+    saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+  }
+  applyTheme(saved);
+})();
 
 </script>
 </body>
